@@ -137,19 +137,7 @@ def main():
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
 
-            # Function to convert float to string and remove last 2 characters
-            def convert_and_trim(value):
-                if isinstance(value, float):
-                    value_str = str(value)
-                    return value_str[:-2]
-                return value
-            
-            # Apply function to all float columns
-            df = df.applymap(convert_and_trim)
-            
-            print("DataFrame with trimmed string values:")
-            print(df)
-
+            df=df.round(2)
             
             st.dataframe(df)
             counter += 1
