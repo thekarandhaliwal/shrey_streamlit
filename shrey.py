@@ -137,7 +137,13 @@ def main():
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
 
-            df=df.round(2)
+            df_numeric = df.drop('symbol', axis=1).applymap(lambda x: f"{x:.4f}")
+            df_as_strings = df_numeric.applymap(lambda x: str(x))
+            df_numeric = df_as_strings.applymap(lambda x: x[:-2])
+            df_numeric
+            # Combine the numeric values DataFrame with the Symbols column
+            df_combined = pd.concat([df['symbol'], df_numeric], axis=1)
+            df=df_combined
             
             st.dataframe(df)
             counter += 1
