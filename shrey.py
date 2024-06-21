@@ -149,16 +149,7 @@ def main():
             
             print("DataFrame with trimmed string values:")
             print(df)
-            
-            # Function to convert string back to float
-            def convert_back_to_float(value):
-                try:
-                    return float(value)
-                except ValueError:
-                    return value
-            
-            # Apply function to all columns
-            df = df.applymap(convert_back_to_float)
+
             
             st.dataframe(df)
             counter += 1
