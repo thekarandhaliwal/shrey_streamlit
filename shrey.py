@@ -153,5 +153,5 @@ def main():
         elapsed_time = time.time() - start_time
         st.text(f"Total time taken: {elapsed_time:.2f} seconds")  # Display total time taken
     
-if _name_ == "_main_":
+if __name__ == "_main_":
     main()
