@@ -136,7 +136,15 @@ def main():
             # df.replace([pd.NA, float('inf'), float('-inf')], 0, inplace=True)
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
-
+            st.dataframe(df.style.format({
+                            'Previous': '{:.2f}',
+                            'LTP': '{:.2f}',
+                            '%': '{:.2f}',
+                            'change': '{:.2f}',
+                            'call_price': '{:.2f}',
+                            'put_price': '{:.2f}',
+                            'expected_premium': '{:.2f}'
+                        }))
             st.dataframe(df)
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
