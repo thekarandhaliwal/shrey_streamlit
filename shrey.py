@@ -8,11 +8,11 @@ from truedata.history import TD_hist
 import time
 
 def main():
-    st.title("Values")
+    st.title("DataFrame Display with Streamlit")
     
     # User input for x and y values
-    x = st.number_input('Excpected Premium:', value=6000.0, format="%.2f")
-    y = st.number_input('Percentage:', value=10.0, format="%.2f")
+    x = st.number_input('Enter the value for x:', value=6000.0, format="%.2f")
+    y = st.number_input('Enter the value for y:', value=10.0, format="%.2f")
 
     if 'run_analysis' not in st.session_state:
         st.session_state.run_analysis = False
@@ -153,5 +153,5 @@ def main():
         elapsed_time = time.time() - start_time
         st.text(f"Total time taken: {elapsed_time:.2f} seconds")  # Display total time taken
     
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
