@@ -136,7 +136,6 @@ def main():
             # df.replace([pd.NA, float('inf'), float('-inf')], 0, inplace=True)
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
-            import pandas as pd
 
             # Function to convert float to string and remove last 2 characters
             def convert_and_trim(value):
