@@ -136,15 +136,31 @@ def main():
             # df.replace([pd.NA, float('inf'), float('-inf')], 0, inplace=True)
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
-            st.dataframe(df.style.format({
-                            'Previous': '{:.2f}',
-                            'LTP': '{:.2f}',
-                            '%': '{:.2f}',
-                            'change': '{:.2f}',
-                            'call_price': '{:.2f}',
-                            'put_price': '{:.2f}',
-                            'expected_premium': '{:.2f}'
-                        }))
+            import pandas as pd
+
+            # Function to convert float to string and remove last 2 characters
+            def convert_and_trim(value):
+                if isinstance(value, float):
+                    value_str = str(value)
+                    return value_str[:-2]
+                return value
+            
+            # Apply function to all float columns
+            df = df.applymap(convert_and_trim)
+            
+            print("DataFrame with trimmed string values:")
+            print(df)
+            
+            # Function to convert string back to float
+            def convert_back_to_float(value):
+                try:
+                    return float(value)
+                except ValueError:
+                    return value
+            
+            # Apply function to all columns
+            df = df.applymap(convert_back_to_float)
+            
             st.dataframe(df)
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
