@@ -133,6 +133,20 @@ def main():
             df = df.drop(columns=['call_price', "put_price"])
             df = df[['symbol', 'LOT', 'Previous', 'LTP', '%', 'change', 'call strike', 'put strike', 'excpected premium', 'call premium', 'put premium', 'IV']]
             df.replace([pd.NA, float('inf'), float('-inf')], 0, inplace=True)
+            def custom_round(x):
+                if isinstance(x, float):
+                    return round(x, 2)
+                elif isinstance(x, int):
+                    return x
+                else:
+                    return x
+
+            # Apply this function to the DataFrame
+            df = df.applymap(custom_round)
+
+            # Display the rounded DataFrame
+            print(df)
+
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
 
