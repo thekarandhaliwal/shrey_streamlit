@@ -144,7 +144,7 @@ def main():
             # Combine the numeric values DataFrame with the Symbols column
             df_combined = pd.concat([df['symbol'], df_numeric], axis=1)
             df=df_combined
-            
+            df = df.applymap(lambda x: x[:-3] if x[-2:] == '00' else x)
             st.dataframe(df)
             counter += 1
             progress_bar.progress(min(counter / total_steps, 1.0))
